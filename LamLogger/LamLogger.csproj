@@ -13,8 +13,8 @@
         <RepositoryUrl>https://github.com/chaosmac1/LamLogger</RepositoryUrl>
         <RepositoryType>GIT</RepositoryType>
         <PackageTags>Lambda Lib Logger</PackageTags>
-        <PackageReleaseNotes>Add AddLog__Start</PackageReleaseNotes>
-        <Version>1.1.0</Version>
+        <PackageReleaseNotes>Fix UseDbAsPrint</PackageReleaseNotes>
+        <Version>1.1.2</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

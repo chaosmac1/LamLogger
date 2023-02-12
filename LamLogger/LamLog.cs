@@ -151,7 +151,7 @@ public class LamLog: IDisposable {
     private async Task Trigger(LamLogTable table) {
         Print(table);
         
-        if (_settings.UseDbAsPrint) return;
+        if (_settings.UseDbAsPrint == false) return;
         if (_settings.LazyDbPrint) {
             _logs.Enqueue(table);
             return;
