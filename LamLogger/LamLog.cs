@@ -193,8 +193,9 @@ public class LamLog: IDisposable {
         
         if (log.Stack.IsSet()) {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"\n Stack: {log.Stack}\n");
+            Console.Write($"\n Stack: {log.Stack}");
         }
+        Console.Write('\n');
 
         Console.ForegroundColor = defaultColor;
     }
