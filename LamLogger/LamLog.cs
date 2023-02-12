@@ -78,7 +78,7 @@ public class LamLog: IDisposable {
         AddLogWithTriggerAsync("Start", ELamLoggerStatus.Ok, $"(Name: {caller}, Line: {lineNumber}, filePath: {filePath})", Option<string>.Empty).Wait();
     }
     
-    public async Task AddOkDebugStartAsync(
+    public async Task AddLogOkStartAsync(
         [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string caller = null!, [CallerFilePath] string filePath = null!) {
         await AddLogWithTriggerAsync("Start", ELamLoggerStatus.Ok, $"(Name: {caller}, Line: {lineNumber}, filePath: {filePath})", Option<string>.Empty);
     }
