@@ -8,6 +8,13 @@
         <Authors>chaosmac1 (lambda)</Authors>
         <Description>Logger Lib</Description>
         <Copyright>MIT</Copyright>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageProjectUrl>https://github.com/chaosmac1/LamLogger</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/chaosmac1/LamLogger</RepositoryUrl>
+        <RepositoryType>GIT</RepositoryType>
+        <PackageTags>Lambda Lib Logger</PackageTags>
+        <PackageReleaseNotes>Add AddLog__Start</PackageReleaseNotes>
+        <Version>1.1.0</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

@@ -10,6 +10,7 @@ public class LamLog: IDisposable {
     private readonly LamLogSettings _settings;
     
     public LamLog(Option<Func<LamLogTable[], Task>> dbActionAsync) {
+        _settings = LamLog.Settings;
         _uuid = DateUuid.NewDateTime;
         _logs = _settings!.LazyDbPrint? new Queue<LamLogTable>(8): new Queue<LamLogTable>(0);
         _dbActionAsync = dbActionAsync;
@@ -61,7 +62,26 @@ public class LamLog: IDisposable {
         System.Diagnostics.StackTrace t = new System.Diagnostics.StackTrace();
         await AddLogWithTriggerAsync(message, ELamLoggerStatus.Error, $"(Name: {caller}, Line: {lineNumber}, filePath: {filePath})", Option<string>.With(t.ToString()));
     }
+
+    public void AddLogDebugStart(
+        [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string caller = null!, [CallerFilePath] string filePath = null!) {
+        AddLogWithTriggerAsync("Start", ELamLoggerStatus.Debug, $"(Name: {caller}, Line: {lineNumber}, filePath: {filePath})", Option<string>.Empty).Wait();
+    }
     
+    public async Task AddLogDebugStartAsync(
+        [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string caller = null!, [CallerFilePath] string filePath = null!) {
+        await AddLogWithTriggerAsync("Start", ELamLoggerStatus.Debug, $"(Name: {caller}, Line: {lineNumber}, filePath: {filePath})", Option<string>.Empty);
+    }
+    
+    public void AddLogOkStart(
+        [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string caller = null!, [CallerFilePath] string filePath = null!) {
+        AddLogWithTriggerAsync("Start", ELamLoggerStatus.Ok, $"(Name: {caller}, Line: {lineNumber}, filePath: {filePath})", Option<string>.Empty).Wait();
+    }
+    
+    public async Task AddOkDebugStartAsync(
+        [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string caller = null!, [CallerFilePath] string filePath = null!) {
+        await AddLogWithTriggerAsync("Start", ELamLoggerStatus.Ok, $"(Name: {caller}, Line: {lineNumber}, filePath: {filePath})", Option<string>.Empty);
+    }
     
     public void AddLog(string message, ELamLoggerStatus status, Option<string> stack, [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string caller = null!, [CallerFilePath] string filePath = null!) {
         (status switch {
